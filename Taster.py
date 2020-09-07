@@ -26,29 +26,32 @@ class Taster():
         LED_Status = False
 
         while True:
+            # Taster gedrückt und LED aus == LED an 
             if GPIO.input(GPIO_TASTER) == GPIO.HIGH and LED_Status == False:
         
                 LED.On(1)
                 LED_Status = True
-                print("an")
-                time.sleep(0.2)
         
-                # Taster gedrückt und LED aus == LED aus 
+            # Taster gedrückt und LED an == LED aus 
             elif GPIO.input(GPIO_TASTER) == GPIO.HIGH and LED_Status == True:
                 
                 LED.Off(1)
                 LED_Status = False
-                print("aus")
-                time.sleep(0.2)
 
 class LED():
 
     def On(self):
+        #LED wir eingeschaltet
         GPIO.output(GPIO_LED, GPIO.HIGH)
+        print("LED angeschaltet")
+        time.sleep(0.2)
 
     def Off(self):
+        #LED wird ausgeschaltet
         GPIO.output(GPIO_LED, GPIO.LOW)
+        print("LED ausgeschlatet")
+        time.sleep(0.2)
 
-            
+#Taster Klasse wird automatisch gestartet
 if __name__ == "__main__":
 	Taster.switch(1, False)
